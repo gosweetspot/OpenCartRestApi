@@ -1,0 +1,74 @@
+The upload folder contains all files for this module. 
+You will notice that the folders are in the same structure as your Opencart installation.
+
+1. Navigate to your opencart root folder using an FTP program
+2. Upload the "catalog" & "admin" folder to your opencart installation folder
+3. Go to your admin area in Extensions->Product Feeds and enable your REST API extension
+   You have to fill the security key field (eg. 12345 or anything else)
+   You have to use this key in your REST URLs, eg:
+   http://example.com/orders/key/12345
+   http://example.com/products/key/12345
+
+4.
+
+----------------------------------------------------------------
+Please make sure you have a valid backup of
+\catalog\model\account\order.php
+
+If you want to get all orders with REST service, open file:
+\catalog\model\account\order.php
+
+and paste code, before the last closing tag:
+	
+public function getAllOrders($start = 0, $limit = 20) {
+	if ($start < 0) {
+		$start = 0;
+	}
+	
+	if ($limit < 1) {
+		$limit = 1;
+	}	
+	
+	$query = $this->db->query("SELECT o.order_id, o.firstname, o.lastname, os.name as status, o.date_added, o.total, o.currency_code, o.currency_value FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_status os ON (o.order_status_id = os.order_status_id) WHERE o.order_status_id > '0' AND os.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY o.order_id DESC LIMIT " . (int)$start . "," . (int)$limit);	
+
+	return $query->rows;
+}
+
+----------------------------------------------------------------
+
+If you want to use short URL in REST service, paste into your opencart root folder .htaccess file
+
+RewriteEngine On
+RewriteBase /
+
+#REST API products
+RewriteRule ^products/key/?([0-9]+) index.php?route=feed/rest_api/products&key=$1  [L]
+
+#REST API orders
+RewriteRule ^orders/key/?([0-9]+) index.php?route=feed/rest_api/orders&key=$1  [L]
+
+
+REST SERVICES
+----------------------------------------------------
+
+Products:
+
+Request URI: http://example.com/products/key/{secret_key}
+Request URI /without .htaccess/: http://example.com/index.php?route=feed/rest_api/products&key={secret_key}
+Request method: GET
+Request Body:
+Response:
+	Error: {"success": false}
+	Success: {"success": true, "products": [{}]}
+
+----------------------------------------------------
+
+Orders
+
+Request method: GET
+Request URI: http://example.com/orders/key/{secret_key}
+Request URI /without .htaccess/: http://example.com/index.php?route=feed/rest_api/orders&key={secret_key}
+Request Body:
+Response:
+	Error: {"success": false}
+	Success: {"success": true, "orders": [{...}]}
