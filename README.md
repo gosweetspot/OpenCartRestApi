@@ -1,29 +1,20 @@
-# README #
+# README / INSTALLATION  #
 
-This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
+This extension is provided on a as-is basis.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Installation is at your own risk.
 
-### How do I get set up? ###
+The package may be updated from time to time, and these upgrades may break this particular version. You will be required to update.
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+###ENSURE YOU BACKUP YOUR SITE BEFORE INSTALLING THIS ###
 
-### Contribution guidelines ###
+### IT IS RECOMMENDED THAT YOUR GET YOUR WEBSITE ADMIN TO REVIEW THE FILES TO ENSURE IT DOES NOT CONFLICT WITH ANY EXISTING EXTENSIONS ###
 
-* Writing tests
-* Code review
-* Other guidelines
+You will notice that the folders are in the same structure as your Opencart installation.
 
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+1. Navigate to your opencart root folder using an FTP program
+2. Upload the "catalog" & "admin" folder to your opencart installation folder
+3. Go to your admin area in Extensions->Product Feeds and enable your GSS API extension
+   You have to fill the security key field (eg. 12345 or anything else)
+   This key is then required on GoSweetSpot configuration.
