@@ -18,3 +18,5 @@ You will notice that the folders are in the same structure as your Opencart inst
 3. Go to your admin area in Extensions->Product Feeds and enable your GSS API extension
    You have to fill the security key field (eg. 12345 or anything else)
    This key is then required on GoSweetSpot configuration.
+
+Download the latest version from the **Releases** above.
