@@ -5,6 +5,8 @@ This extension is provided on a as-is basis.
 
 Installation is at your own risk.
 
+**OpenCart V2.0 users should use this version https://github.com/gosweetspot/OpenCartRestApiV2
+
 The package may be updated from time to time, and these upgrades may break this particular version. You will be required to update.
 
 ###ENSURE YOU BACKUP YOUR SITE BEFORE INSTALLING THIS ###
